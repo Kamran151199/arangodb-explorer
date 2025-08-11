@@ -1,0 +1,48 @@
+# --- OS / Editor ---
+.DS_Store
+Thumbs.db
+.idea/
+**/.history/
+
+# VS Code workspace settings (keep common tracked files)
+!**/.vscode/tasks.json
+!**/.vscode/extensions.json
+!**/.vscode/launch.json
+!**/.vscode/settings.json
+
+# --- Logs ---
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- Node / Package managers ---
+node_modules/
+**/node_modules/
+.pnpm-store/
+
+# --- Build outputs / Artifacts ---
+**/out/
+**/dist/
+*.vsix
+
+# --- Coverage ---
+**/coverage/
+**/.nyc_output/
+
+# --- Caches ---
+.cache/
+**/.cache/
+.parcel-cache/
+.turbo/
+
+# --- TypeScript ---
+*.tsbuildinfo
+
+# --- Env files ---
+!.env.example
+
+
+config.bat

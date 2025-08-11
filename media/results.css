@@ -1,0 +1,78 @@
+body {
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e1e1e1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+#table {
+    padding: 10px 12px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 6px 8px;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    position: sticky;
+    top: 0;
+    background: #f9f9f9;
+}
+
+code {
+    white-space: pre-wrap;
+}
+
+input[type="text"],
+input[type="search"],
+select {
+    font: inherit;
+}
+
+.controls {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.controls>* {
+    margin: 0;
+}
+
+.muted {
+    opacity: .7;
+}
+
+.sort-handle {
+    cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+
+    th,
+    td {
+        border-color: #333;
+    }
+
+    th {
+        background: #1e1e1e;
+    }
+}

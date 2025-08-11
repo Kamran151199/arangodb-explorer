@@ -1,0 +1,189 @@
+{
+  "name": "arangodb-explorer",
+  "displayName": "ArangoDB Explorer",
+  "description": "Query and explore ArangoDB databases (AQL) inside VS Code.",
+  "version": "0.1.0",
+  "publisher": "KamranValijonov",
+  "engines": {
+    "vscode": "^1.92.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "aql",
+        "aliases": [
+          "AQL",
+          "aql"
+        ],
+        "extensions": [
+          ".aql",
+          ".arangoql",
+          ".aq"
+        ]
+      }
+    ],
+    "views": {
+      "explorer": [
+        {
+          "id": "arangodb.connections",
+          "name": "ArangoDB"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "arangodb.connect",
+        "title": "ArangoDB: Add Connection"
+      },
+      {
+        "command": "arangodb.disconnect",
+        "title": "ArangoDB: Remove Connection"
+      },
+      {
+        "command": "arangodb.newQuery",
+        "title": "ArangoDB: New AQL Query"
+      },
+      {
+        "command": "arangodb.runQuery",
+        "title": "ArangoDB: Run AQL"
+      },
+      {
+        "command": "arangodb.runQueryInline",
+        "title": "ArangoDB: Run AQL (Inline Results)"
+      },
+      {
+        "command": "arangodb.runQueryFromHere",
+        "title": "ArangoDB: Run AQL From Here"
+      },
+      {
+        "command": "arangodb.setActiveConnection",
+        "title": "ArangoDB: Set Active Connection"
+      },
+      {
+        "command": "arangodb.setActiveDatabase",
+        "title": "ArangoDB: Set Active Database"
+      },
+      {
+        "command": "arangodb.openInlineResults",
+        "title": "ArangoDB: Open Inline Results"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "arangodb.connect",
+          "when": "view == arangodb.connections",
+          "group": "navigation@1"
+        },
+        {
+          "command": "arangodb.newQuery",
+          "when": "view == arangodb.connections",
+          "group": "navigation@2"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "arangodb.runQuery",
+          "group": "navigation@1"
+        },
+        {
+          "command": "arangodb.runQueryFromHere",
+          "group": "navigation@2"
+        }
+      ],
+      "editor/context": [
+        {
+          "command": "arangodb.runQuery",
+          "group": "navigation@1"
+        },
+        {
+          "command": "arangodb.runQueryFromHere",
+          "group": "navigation@2"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "arangodb.runQuery",
+        "key": "cmd+enter",
+        "when": "editorLangId == aql && editorTextFocus"
+      },
+      {
+        "command": "arangodb.runQuery",
+        "key": "ctrl+enter",
+        "when": "editorLangId == aql && editorTextFocus"
+      },
+      {
+        "command": "arangodb.runQueryInline",
+        "key": "shift+cmd+enter",
+        "when": "editorLangId == aql && editorTextFocus"
+      },
+      {
+        "command": "arangodb.runQueryInline",
+        "key": "shift+ctrl+enter",
+        "when": "editorLangId == aql && editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "ArangoDB Explorer",
+      "properties": {
+        "arangodb.rememberLastDatabase": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use the last-used database for a connection instead of prompting each time."
+        },
+        "arangodb.inlineResults.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "When running inline, insert results as commented blocks below the selection."
+        },
+        "arangodb.inlineResults.maxRows": {
+          "type": "number",
+          "default": 50,
+          "minimum": 1,
+          "description": "Maximum number of rows to include in an inline result block."
+        },
+        "arangodb.results.maxRows": {
+          "type": "number",
+          "default": 5000,
+          "minimum": 100,
+          "description": "Maximum rows to render in the results view to avoid UI freeze. Extra rows are truncated."
+        },
+        "arangodb.results.defaultPageSize": {
+          "type": "number",
+          "default": 100,
+          "enum": [
+            25,
+            50,
+            100,
+            200,
+            500
+          ],
+          "description": "Default page size for the results table pagination."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "tsc -p ./",
+    "watch": "tsc -watch -p ./"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "@types/vscode": "^1.92.0",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "arangojs": "^8.7.1",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^3.3.2"
+  }
+}
